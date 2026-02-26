@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>組織理論與行為專題 | 114-2 課程大綱</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1F4E79;
+      --secondary: #2E75B6;
+      --accent: #5B9BD5;
+      --light-bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text: #333333;
+      --muted: #666666;
+      --border: #E2E8F0;
+      --phase1: #3B82F6;
+      --phase2: #10B981;
+      --phase3: #F59E0B;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Header */
+    header {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .school-name {
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--secondary);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    
+    .course-meta {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    
+    .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Navigation */
+    .phase-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .phase-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    
+    .phase-btn.phase1 { background: var(--phase1); color: white; }
+    .phase-btn.phase2 { background: var(--phase2); color: white; }
+    .phase-btn.phase3 { background: var(--phase3); color: white; }
+    .phase-btn.all { background: var(--primary); color: white; }
+    
+    .phase-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+    
+    .phase-btn.active {
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.5);
+    }
+    
+    /* Course Info Cards */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .info-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .info-card h3 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-card ul {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+    
+    .info-card li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .info-card li:last-child { border-bottom: none; }
+    
+    /* Week Cards */
+    .weeks-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .week-card {
+      background: rgba(255,255,255,0.98);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .week-card:hover {
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    
+    .week-card.phase1 { border-left: 4px solid var(--phase1); }
+    .week-card.phase2 { border-left: 4px solid var(--phase2); }
+    .week-card.phase3 { border-left: 4px solid var(--phase3); }
+    
+    .week-header {
+      padding: 20px 25px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    
+    .week-header:hover {
+      background: var(--light-bg);
+    }
+    
+    .week-info {
+      flex: 1;
+    }
+    
+    .week-number {
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .phase1 .week-number { color: var(--phase1); }
+    .phase2 .week-number { color: var(--phase2); }
+    .phase3 .week-number { color: var(--phase3); }
+    
+    .week-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    
+    .week-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+    
+    .week-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: var(--light-bg);
+      padding: 6px 12px;
+      border-radius: 20px;
+      margin-left: 15px;
+      white-space: nowrap;
+    }
+    
+    .toggle-icon {
+      font-size: 1.5rem;
+      color: var(--muted);
+      transition: transform 0.3s ease;
+      margin-left: 15px;
+    }
+    
+    .week-card.open .toggle-icon {
+      transform: rotate(180deg);
+    }
+    
+    .week-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+    
+    .week-card.open .week-content {
+      max-height: 2000px;
+    }
+    
+    .week-body {
+      padding: 0 25px 25px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .question-box {
+      background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+      border-radius: 12px;
+      padding: 18px;
+      margin: 20px 0;
+      font-size: 0.95rem;
+    }
+    
+    .question-box strong {
+      color: var(--primary);
+    }
+    
+    .reading-section {
+      margin: 20px 0;
+    }
+    
+    .reading-section h4 {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .reading-item {
+      background: var(--light-bg);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    
+    .reading-item.required {
+      border-left: 3px solid var(--secondary);
+    }
+    
+    .reading-item.optional {
+      border-left: 3px solid #94A3B8;
+      background: #F8FAFC;
+    }
+    
+    .reading-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+    }
+    
+    .reading-tag.required {
+      background: var(--secondary);
+      color: white;
+    }
+    
+    .reading-tag.optional {
+      background: #94A3B8;
+      color: white;
+    }
+    
+    .reading-item a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    
+    .reading-item a:hover {
+      text-decoration: underline;
+    }
+    
+    .method-box, .application-box {
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 15px 0;
+      font-size: 0.88rem;
+    }
+    
+    .method-box {
+      background: #FEF3C7;
+      border-left: 3px solid #F59E0B;
+    }
+    
+    .application-box {
+      background: #D1FAE5;
+      border-left: 3px solid #10B981;
+    }
+    
+    .box-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    /* Assessment Section */
+    .assessment-section {
+      background: rgba(255,255,255,0.95);
+      border-radius: 16px;
+      padding: 30px;
+      margin-top: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    
+    .assessment-section h2 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+    
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+    }
+    
+    .assessment-item {
+      background: var(--light-bg);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .assessment-weight {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .assessment-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin: 8px 0;
+    }
+    
+    .assessment-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+    
+    footer a {
+      color: rgba(255,255,255,0.9);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container { padding: 15px; }
+      header { padding: 25px; }
+      h1 { font-size: 1.8rem; }
+      .course-meta { gap: 15px; font-size: 0.85rem; }
+      .phase-nav { gap: 10px; }
+      .phase-btn { padding: 10px 18px; font-size: 0.85rem; }
+      .week-header { padding: 15px 18px; }
+      .week-title { font-size: 1rem; }
+      .week-date { display: none; }
+    }
+    
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .week-card {
+      animation: fadeIn 0.4s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="school-name">國立中興大學 國家政策與公共事務研究所</div>
+      <h1>組織理論與行為專題</h1>
+      <div class="subtitle">Seminar in Organization Theory and Behavior</div>
+      <div class="course-meta">
+        <span>📅 114-2 學期</span>
+        <span>👤 潘競恒 副教授</span>
+        <span>🕐 週四 14:00-17:00</span>
+        <span>📚 3 學分</span>
+      </div>
+    </header>
+    
+    <div class="phase-nav">
+      <button class="phase-btn all active" onclick="filterWeeks('all')">全部週次</button>
+      <button class="phase-btn phase1" onclick="filterWeeks('phase1')">Phase I 基礎</button>
+      <button class="phase-btn phase2" onclick="filterWeeks('phase2')">Phase II 組織動態</button>
+      <button class="phase-btn phase3" onclick="filterWeeks('phase3')">Phase III 當代前沿</button>
+    </div>
+    
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🎯 課程目標</h3>
+        <ul>
+          <li>辨識組織理論主要典範與分析途徑</li>
+          <li>運用 OB 核心概念分析真實組織</li>
+          <li>批判性閱讀學術文獻</li>
+          <li>完成文獻回顧與理論批判論文</li>
+          <li>連結當代前沿議題與組織理論</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>📊 課程特色</h3>
+        <ul>
+          <li><span>分析架構</span><span>微觀→中觀→宏觀</span></li>
+          <li><span>文獻取向</span><span>經典＋前沿並重</span></li>
+          <li><span>方法整合</span><span>螺旋式累積</span></li>
+          <li><span>部門視野</span><span>公私兼具</span></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="weeks-container" id="weeksContainer">
+      <!-- Week 1 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 1 週 │ Phase I：基礎</div>
+            <div class="week-title">組織研究的典範與方法</div>
+            <div class="week-subtitle">Organizational Paradigms and Research Methods</div>
+          </div>
+          <div class="week-date">02/26</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>組織理論的主要典範（理性系統、自然系統、開放系統）如何影響我們對組織的理解？公共組織需要獨立的理論處理嗎？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Simon, H. A. (1997). <em>Administrative behavior</em> (4th ed.), Ch 1-2. Free Press.<br>
+                <small>【備案】Simon, H. A. (1946). The proverbs of administration. <em>PAR</em>. <a href="https://doi.org/10.2307/973030" target="_blank">DOI</a></small>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Scott, W. R. (2014). <em>Institutions and organizations</em> (4th ed.), Ch 1. SAGE.<br>
+                <small>【備案】Scott (2008). Approaching adulthood. <em>Theory and Society</em>. <a href="https://doi.org/10.1007/s11186-008-9067-z" target="_blank">DOI</a></small>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Groeneveld et al. (2015). Quantitative methods in public administration. <em>IPMJ</em>, 18(1), 61-86. <a href="http://doi.org/10.1080/10967494.2014.972484" target="_blank">DOI</a>
+              </div>
+              <div class="reading-item optional">
+                <span class="reading-tag optional">延伸</span>
+                Glynn & D'Aunno (2023). An intellectual history of institutional theory. <em>AMA Annals</em>. <a href="http://doi.org/10.5465/annals.2020.0341" target="_blank">DOI</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：量化與質性方法光譜</div>
+              組織研究的方法論全景：調查研究、個案研究、實驗設計與新興計算方法（NLP、機器學習）。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：公私組織的比較</div>
+              以臺灣行政院組織與大型企業集團為例，探討公私組織在目標模糊性、環境依賴、績效衡量等面向的差異。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 2 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 2 週 │ Phase I：基礎</div>
+            <div class="week-title">官僚制的遺產：韋伯與批判</div>
+            <div class="week-subtitle">The Bureaucratic Legacy: Weber and Its Critics</div>
+          </div>
+          <div class="week-date">03/05</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>韋伯的理想型官僚是規範性主張還是分析工具？當代組織中韋伯遺產的光與影為何？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Weber, M. (2019). <em>Economy and society</em> (K. Tribe Trans.), 官僚制章節選讀. Harvard UP.
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Olsen, J. P. (2006). Maybe it is time to rediscover bureaucracy. <em>JPART</em>, 16(1), 1-24. <a href="https://doi.org/10.1093/jopart/mui027" target="_blank">DOI</a>
+              </div>
+              <div class="reading-item optional">
+                <span class="reading-tag optional">延伸</span>
+                du Gay, P. (2009). In defence of Mandarins. <em>Management & Organizational History</em>. DOI: 10.1177/1744935909348978
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：理論建構與概念化</div>
+              「理想型」(Ideal Type) 作為社會科學方法的意涵；概念化與操作化的區別。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣文官體系的官僚特質</div>
+              以考試院體制、文官考選制度為例，分析韋伯官僚制三要素在臺灣的實踐樣態。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 3 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 3 週 │ Phase I：基礎</div>
+            <div class="week-title">動機理論：從需求層次到公共服務動機</div>
+            <div class="week-subtitle">Motivation: From Hierarchy of Needs to PSM</div>
+          </div>
+          <div class="week-date">03/12</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>公務員真的是理性自利的嗎？PSM 的測量是否具有跨文化效度？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Maslow, A. H. (1943). A theory of human motivation. <em>Psychological Review</em>, 50(4), 370-396. <a href="https://doi.org/10.1037/h0054346" target="_blank">DOI</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Herzberg, F. (1968). One more time: How do you motivate employees? <em>HBR</em>. <a href="https://pdodds.w3.uvm.edu/files/papers/others/1968/herzberg1968.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Perry, J. L., & Wise, L. R. (1990). The motivational bases of public service. <em>PAR</em>, 50(3), 367-373. <a href="https://doi.org/10.2307/976618" target="_blank">DOI</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Kim, S. et al. (2013). Investigating the structure and meaning of PSM across populations. <em>JPART</em>. <a href="https://doi.org/10.1093/jopart/mus027" target="_blank">DOI</a>
+              </div>
+              <div class="reading-item optional">
+                <span class="reading-tag optional">延伸</span>
+                陳重安、許成委（2016）。公共服務動機：回顧、反思與未來方向。<em>公共行政學報</em>，51。
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：調查研究與量表發展</div>
+              檢視 PSM 量表；測量恆等性 (Measurement Invariance) 在跨文化研究中的重要性。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 4 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 4 週 │ Phase I：基礎</div>
+            <div class="week-title">自主性與內在動機：自我決定論</div>
+            <div class="week-subtitle">Autonomy and Intrinsic Motivation: SDT</div>
+          </div>
+          <div class="week-date">03/19</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>科層體制中的自主性是可能的嗎？官僚控制與自主支持如何平衡？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Ryan, R. M., & Deci, E. L. (2000). Self-determination theory and the facilitation of intrinsic motivation. <em>American Psychologist</em>, 55(1), 68-78. <a href="https://static1.squarespace.com/static/5c96d4ec0cf57d91390bd370/t/5cae46c1ec212dac4006d7d4/1554925256116/SDTandintmotive+%281%29.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Deci, E. L. et al. (2017). Self-determination theory in work organizations. <em>Annual Review of OPB</em>, 4, 19-43. <a href="https://www.annualreviews.org/content/journals/10.1146/annurev-orgpsych-032516-113108" target="_blank">DOI</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：中介分析</div>
+              中介效果的概念與檢定；心理需求滿足作為中介變項；SEM 基本邏輯。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：紅帶與動機</div>
+              運用紅帶理論分析官僚規則何時傷害、何時支持自主性。臺灣公務人員的裁量權與自主空間。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 5 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 5 週 │ Phase I：基礎</div>
+            <div class="week-title">決策：有限理性與垃圾桶模式</div>
+            <div class="week-subtitle">Decision-Making: Bounded Rationality & Garbage Can</div>
+          </div>
+          <div class="week-date">03/26</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>公共政策的產出是精算結果，還是問題、解方與參與者的偶然相遇？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Simon, H. A. (1955). A behavioral model of rational choice. <em>QJE</em>, 69(1), 99-118. <a href="https://www.jstor.org/stable/pdf/1884852.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Cohen, March & Olsen (1972). A garbage can model of organizational choice. <em>ASQ</em>, 17(1), 1-25. <a href="https://www.jstor.org/stable/pdf/2392088.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Tversky & Kahneman (1974). Judgment under uncertainty: Heuristics and biases. <em>Science</em>. <a href="https://www.jstor.org/stable/pdf/1738360.pdf" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：行為實驗</div>
+              行為公共行政的實驗方法：調查實驗、田野實驗、結合分析 (Conjoint Analysis)。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：政策窗與議程設定</div>
+              以臺灣重大公共事件為例，運用垃圾桶模式覆盤分析，連結 Kingdon 的政策窗概念。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 6 -->
+      <div class="week-card phase1" data-phase="phase1">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 6 週 │ Phase I：基礎</div>
+            <div class="week-title">組織正義與倫理</div>
+            <div class="week-subtitle">Organizational Justice and Ethics</div>
+          </div>
+          <div class="week-date">04/02</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>公部門中的「公平感」如何影響組織公民行為？分配正義、程序正義與互動正義如何交互作用？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Adams, J. S. (1965). Inequity in social exchange. <em>Advances in Experimental Social Psychology</em>. <a href="https://www.sciencedirect.com/science/chapter/bookseries/abs/pii/S0065260108601082" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Colquitt, J. A. (2001). On the dimensionality of organizational justice. <em>JAP</em>, 86(3), 386-400. <a href="https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Justice/Colquitt_Dimensionality_of_Organizational_Justice.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Colquitt et al. (2001). Justice at the millennium: A meta-analytic review. <em>JAP</em>. <a href="https://leeds-faculty.colorado.edu/dahe7472/Colquitt%202001.pdf" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：後設分析</div>
+              效果量、異質性檢定、調節效果分析。以 Colquitt et al. (2001) 為範例。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公務人員考績爭議</div>
+              結合考績法修法與職場霸凌時事，探討程序正義與互動正義在臺灣文官體系的實踐。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 7 -->
+      <div class="week-card phase2" data-phase="phase2">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 7 週 │ Phase II：組織動態</div>
+            <div class="week-title">領導理論：轉換型、真誠與分散式</div>
+            <div class="week-subtitle">Leadership: Transformational, Authentic, Distributed</div>
+          </div>
+          <div class="week-date">04/09</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>轉換型領導在科層體制中是否可行？分散式領導如何挑戰傳統的層級指揮觀？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Bass, B. M. (1999). Two decades of research and development in transformational leadership. <em>EJWOP</em>. <a href="https://techtied.net/wp-content/uploads/2007/10/bass_transforrmational_leadership.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Van Wart, M. (2003). Public-sector leadership theory: An assessment. <em>PAR</em>. <a href="https://www.researchgate.net/profile/Monty-Van-Wart/publication/228002814_Public-Sector_Leadership_Theory_An_Assessment/links/5ecc219e458515626ccc505c/Public-Sector-Leadership-Theory-An-Assessment.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Avolio & Gardner (2005). Authentic leadership development. <em>Leadership Quarterly</em>. <a href="https://www.sciencedirect.com/science/article/pii/S1048984305000263" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：後設分析的文化調節</div>
+              以國家文化（Hofstede 文化維度）作為調節變項的分析方法。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公部門領導動態</div>
+              以六都市長為例分析首長制組織的領導風格；華人「家長式領導」與西方理論的對話。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 8 -->
+      <div class="week-card phase2" data-phase="phase2">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 8 週 │ Phase II：組織動態</div>
+            <div class="week-title">組織文化與意義建構</div>
+            <div class="week-subtitle">Organizational Culture and Sensemaking</div>
+          </div>
+          <div class="week-date">04/16</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>組織文化是領導者塑造的，還是自然演化的？「宣告價值」與「潛在假設」為何經常衝突？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Schein, E. H. (1996). Culture: The missing concept in organization studies. <em>ASQ</em>. <a href="https://www.jstor.org/stable/pdf/2393715.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Quinn & Rohrbaugh (1983). A spatial model of effectiveness criteria (競值架構). <em>Management Science</em>. <a href="https://www.jstor.org/stable/pdf/2631061" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：質性方法—民族誌與臨床探究</div>
+              Schein 的「謙遜探究」取徑；組織文化評估量表 (OCAI)。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公部門文化診斷</div>
+              運用競值架構診斷臺灣中央機關的文化定位。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 9 -->
+      <div class="week-card phase2" data-phase="phase2">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 9 週 │ Phase II：組織動態</div>
+            <div class="week-title">新制度論：同形化、正當性與制度工作</div>
+            <div class="week-subtitle">New Institutionalism: Isomorphism and Legitimacy</div>
+          </div>
+          <div class="week-date">04/23</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>組織「長得越來越像」是為了效率，還是為了正當性？三種同形化機制在臺灣如何運作？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Meyer & Rowan (1977). Institutionalized organizations: Formal structure as myth and ceremony. <em>AJS</em>. <a href="https://www.jstor.org/stable/pdf/2778293.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                DiMaggio & Powell (1983). The iron cage revisited. <em>ASR</em>. <a href="https://www.jstor.org/stable/pdf/2095101" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Scott, W. R. (1987). The adolescence of institutional theory (制度三支柱). <em>ASQ</em>. <a href="https://www.jstor.org/stable/pdf/2392880.pdf" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：場域層次分析</div>
+              如何實證研究「組織場域」；縱貫性檔案分析與比較個案設計。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公部門的同形化現象</div>
+              分組作業：尋找一個臺灣公部門「盲目跟風」的政策或組織設計，用同形化理論分析。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 10 -->
+      <div class="week-card phase2" data-phase="phase2">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 10 週 │ Phase II：組織動態</div>
+            <div class="week-title">組織結構與設計</div>
+            <div class="week-subtitle">Organizational Structure and Design</div>
+          </div>
+          <div class="week-date">04/30</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>Mintzberg 的五種組織構型在數位時代還適用嗎？平台組織如何挑戰傳統的組織邊界概念？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Mintzberg, H. (1980). Structure in 5's. <em>Management Science</em>. <a href="https://www.jstor.org/stable/pdf/2630506.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Hillman et al. (2009). Resource dependence theory: A review. <em>JoM</em>. <a href="https://journals.sagepub.com/doi/pdf/10.1177/0149206309343469" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Hanelt et al. (2021). A systematic review of digital transformation. <em>JMS</em>. <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1111%2Fjoms.12639" target="_blank">全文(OA)</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：質性比較分析 (QCA)</div>
+              組織構型的研究方法；等終性 (Equifinality) 概念。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 11 -->
+      <div class="week-card phase2" data-phase="phase2">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 11 週 │ Phase II：組織動態</div>
+            <div class="week-title">網絡、權力與組織間關係</div>
+            <div class="week-subtitle">Networks, Power, and Interorganizational Relations</div>
+          </div>
+          <div class="week-date">05/07</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>「弱連帶」為什麼比「強連帶」更有價值？結構洞如何創造權力？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Granovetter, M. S. (1973). The strength of weak ties. <em>AJS</em>. <a href="https://www.jstor.org/stable/pdf/2776392.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Burt, R. S. (2004). Structural holes and good ideas. <em>AJS</em>. <a href="https://www.jstor.org/stable/pdf/10.1086/421787.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Raven, B. H. (1993). The bases of power: Origins and recent developments. <em>JSI</em>. <a href="https://files.eric.ed.gov/fulltext/ED351648.pdf" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：社會網絡分析 (SNA)</div>
+              中心性、密度、群聚係數；UCINET、Gephi 工具介紹。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣跨機關協調網絡</div>
+              以 COVID-19 疫情應變組織為例，分析正式指揮體系與非正式關係網絡的互補。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 12 -->
+      <div class="week-card phase3" data-phase="phase3">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 12 週 │ Phase III：當代前沿</div>
+            <div class="week-title">數位轉型與路徑依賴</div>
+            <div class="week-subtitle">Digital Transformation and Path Dependence</div>
+          </div>
+          <div class="week-date">05/14</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>政府數位轉型為何經常失敗？路徑依賴如何解釋制度慣性？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Pierson, P. (2000). Increasing returns, path dependence, and the study of politics. <em>APSR</em>. <a href="https://www.jstor.org/stable/pdf/2586011.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Mergel et al. (2019). Defining digital transformation. <em>GIQ</em>. <a href="https://www.sciencedirect.com/science/article/pii/S0740624X18304131" target="_blank">全文(OA)</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Vial, G. (2019). Understanding digital transformation. <em>JSIS</em>. <a href="https://www.sciencedirect.com/science/article/pii/S0963868717302196" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Fernandez & Rainey (2006). Managing successful organizational change in public sector. <em>PAR</em>.
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：過程追蹤</div>
+              如何辨識「關鍵時刻」(Critical Junctures) 與路徑依賴機制。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣數位治理演進</div>
+              數位發展部成立歷程：資訊中心→研考會→國發會→數位部的演進分析。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 13 -->
+      <div class="week-card phase3" data-phase="phase3">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 13 週 │ Phase III：當代前沿</div>
+            <div class="week-title">AI 與演算法管理</div>
+            <div class="week-subtitle">Artificial Intelligence and Algorithmic Management</div>
+          </div>
+          <div class="week-date">05/21</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>演算法管理如何重塑組織的權力結構？AI 的「自動化–增強」悖論如何解決？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Shrestha et al. (2019). Organizational decision-making structures in the age of AI. <em>CMR</em>. <a href="https://ethz.ch/content/dam/ethz/special-interest/mtec/strategic-mgmt-and-innovation/img_news/cmr.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Raisch & Krakowski (2021). The automation–augmentation paradox. <em>AMR</em>.
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Stark & Vanden Broeck (2024). Principles of algorithmic management. <em>Organization Theory</em>. <a href="https://journals.sagepub.com/doi/pdf/10.1177/26317877241257213" target="_blank">全文(OA)</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：田野實驗</div>
+              組織情境中的 AI 介入實驗設計；RCT 在組織研究中的應用。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公部門 AI 應用</div>
+              稅務行政、司法系統的 AI 應用；自動化偏誤與演算法課責。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 14 -->
+      <div class="week-card phase3" data-phase="phase3">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 14 週 │ Phase III：當代前沿</div>
+            <div class="week-title">混合工作與組織變革</div>
+            <div class="week-subtitle">Hybrid Work and Organizational Change</div>
+          </div>
+          <div class="week-date">05/28</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>混合工作模式如何影響團隊協作與組織文化？遠距工作是「福利」還是組織變革？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Hackman & Oldham (1976). Motivation through the design of work. <em>OBHP</em>. <a href="https://web.mit.edu/curhan/www/docs/Articles/15341_Readings/Group_Performance/Hackman_et_al_1976_Motivation_thru_the_design_of_work.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Bakker & Demerouti (2007). The job demands–resources model. <em>JMP</em>. <a href="https://www.emerald.com/jmp/article-pdf/22/3/309/1581398/02683940710733115.pdf" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Bloom et al. (2024). Hybrid working from home improves retention. <em>Nature</em>. <a href="https://www.nature.com/articles/s41586-024-07500-2.pdf" target="_blank">全文(OA)</a><br>
+                <small>🌟 攜程 1,612 員工 RCT，混合工作降低離職率 33%</small>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：反思主題分析</div>
+              Braun & Clarke 的 Reflexive Thematic Analysis；混合方法的序列解釋設計。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 15 -->
+      <div class="week-card phase3" data-phase="phase3">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 15 週 │ Phase III：當代前沿</div>
+            <div class="week-title">ESG 與永續組織</div>
+            <div class="week-subtitle">ESG and Sustainable Organizations</div>
+          </div>
+          <div class="week-date">06/04</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>ESG 是真正的組織轉型，還是新的「神話與儀式」？利害關係人理論如何應用於公部門？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Parmar et al. (2010). Stakeholder theory: The state of the art. <em>AMA Annals</em>. <a href="https://scholarship.richmond.edu/cgi/viewcontent.cgi?article=1098&context=management-faculty-publications" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Freeman et al. (2021). Stakeholder theory and the resource-based view. <em>JoM</em>. <a href="https://journals.sagepub.com/doi/pdf/10.1177/0149206321993576" target="_blank">全文</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Cooke et al. (2025). From strategic HRM to sustainable HRM? <em>HRM</em>. <a href="https://onlinelibrary.wiley.com/doi/pdf/10.1002/hrm.22318" target="_blank">全文</a>
+              </div>
+            </div>
+            <div class="method-box">
+              <div class="box-title">🔬 方法論連結：系統性文獻回顧</div>
+              PRISMA 2020 指南；VOSviewer 書目計量分析。
+            </div>
+            <div class="application-box">
+              <div class="box-title">🏛️ 應用情境：臺灣公部門永續治理</div>
+              SDGs 與 2050 淨零排放對公共組織的影響；雙重重大性報告。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week 16 -->
+      <div class="week-card phase3" data-phase="phase3">
+        <div class="week-header" onclick="toggleWeek(this)">
+          <div class="week-info">
+            <div class="week-number">第 16 週 │ Phase III：當代前沿</div>
+            <div class="week-title">研究整合與論文發表</div>
+            <div class="week-subtitle">Research Integration and Paper Presentations</div>
+          </div>
+          <div class="week-date">06/11</div>
+          <div class="toggle-icon">▼</div>
+        </div>
+        <div class="week-content">
+          <div class="week-body">
+            <div class="question-box">
+              <strong>💭 核心討論問題：</strong>如何將本學期的理論地圖連結至你的研究方向？
+            </div>
+            <div class="reading-section">
+              <h4>📚 指定閱讀</h4>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                Pratt, M. G. (2025). On the evolution of qualitative methods in organizational research. <em>Annual Review of OPB</em>. <a href="https://www.annualreviews.org/docserver/fulltext/orgpsych/12/1/annurev-orgpsych-111722-032953.pdf" target="_blank">全文(OA)</a>
+              </div>
+              <div class="reading-item required">
+                <span class="reading-tag required">必讀</span>
+                同儕的期末研究論文草稿（課前完成閱讀，準備書面與口頭評論）
+              </div>
+            </div>
+            <div class="application-box">
+              <div class="box-title">🎯 本週活動</div>
+              <strong>Part A</strong>：方法論工具箱回顧（20 分鐘）<br>
+              <strong>Part B</strong>：期末論文發表（140 分鐘）── 15 分鐘發表 + 10 分鐘評論<br>
+              <strong>Part C</strong>：課程總結與展望（20 分鐘）
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Assessment Section -->
+    <div class="assessment-section">
+      <h2>📊 評量設計</h2>
+      <div class="assessment-grid">
+        <div class="assessment-item">
+          <div class="assessment-weight">20%</div>
+          <div class="assessment-name">每週批判性心得</div>
+          <div class="assessment-desc">每週上課前繳交<br>500 字：論證摘要、方法檢視、限制與延伸問題</div>
+        </div>
+        <div class="assessment-item">
+          <div class="assessment-weight">20%</div>
+          <div class="assessment-name">課堂參與及導讀</div>
+          <div class="assessment-desc">每人至少擔任一次導讀人<br>20-30 分鐘導讀簡報與討論問題</div>
+        </div>
+        <div class="assessment-item">
+          <div class="assessment-weight">20%</div>
+          <div class="assessment-name">理論應用短文</div>
+          <div class="assessment-desc">第 8 週繳交<br>2,000-3,000 字，分析臺灣公私部門組織案例</div>
+        </div>
+        <div class="assessment-item">
+          <div class="assessment-weight">40%</div>
+          <div class="assessment-name">期末研究論文</div>
+          <div class="assessment-desc">第 16 週發表<br>8,000-10,000 字文獻回顧與理論批判論文</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>國立中興大學 國家政策與公共事務研究所 │ 114 學年度第 2 學期</p>
+      <p style="margin-top:8px; font-size:0.8rem;">課程大綱內容可能依實際教學進度調整</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleWeek(header) {
+      const card = header.parentElement;
+      card.classList.toggle('open');
+    }
+
+    function filterWeeks(phase) {
+      const cards = document.querySelectorAll('.week-card');
+      const buttons = document.querySelectorAll('.phase-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      cards.forEach(card => {
+        if (phase === 'all' || card.dataset.phase === phase) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeIn 0.4s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Expand all on load for better UX
+    // document.querySelectorAll('.week-card')[0].classList.add('open');
+  </script>
+</body>
+</html>
